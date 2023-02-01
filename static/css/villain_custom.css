@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap");
+
+main {
+  background-color: rgb(48, 48, 48);
+}
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: solid rgba(0, 0, 0, 0.9);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.5),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.b-example-vr {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 100vh;
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.heroes-padding {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.hero-tank {
+  background-image: linear-gradient(
+    rgb(24, 24, 46),
+    rgb(0, 0, 71),
+    rgb(24, 24, 46)
+  );
+}
+.hero-healer {
+  background-image: linear-gradient(
+    rgb(12, 24, 14),
+    rgb(21, 47, 25),
+    rgb(12, 24, 14)
+  );
+}
+.hero-dps {
+  background-image: linear-gradient(
+    rgb(46, 24, 24),
+    rgb(63, 22, 22),
+    rgb(46, 24, 24)
+  );
+}
+
+.abilities {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.ability-name {
+  font-weight: bold;
+  color: rgb(255, 119, 0);
+  font-family: MedievalSharp;
+}
+
+.debuff-highlights {
+  color: red;
+  font-weight: bold;
+}
+
+.buff-highlights {
+  color: rgb(0, 145, 27);
+  font-weight: bold;
+}
+
+.hero-title {
+  text-shadow: -5px -5px 5px #000, 5px -5px 5px #000, -5px 5px 5px #000,
+    5px 5px 5px #000;
+  font-family: MedievalSharp;
+  color: white;
+}
+.hero-text {
+  color: white;
+}
+
+img {
+  border: 3px solid black;
+  border-radius: 10%;
+  width: 600px;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 80%);
+}
+
+.container {
+  max-width: 100% !important;
+}
+
+/* Tooltip container */
+.xtooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.xtooltip .xtooltiptext {
+  top: -50%;
+  right: 110%;
+  visibility: hidden;
+  width: 400px;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.xtooltip.buff-highlights .xtooltiptext {
+  background-color: rgb(0, 76, 0);
+  border: 5px solid rgb(6, 36, 0);
+}
+
+.xtooltip.debuff-highlights .xtooltiptext {
+  background-color: firebrick;
+  border: 5px solid rgb(63, 22, 22);
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.xtooltip:hover .xtooltiptext {
+  visibility: visible;
+}
+
+.xtooltip .xtooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 25px;
+  left: 100%; /* To the right of the tooltip */
+  margin-top: -25px;
+  border-width: 20px;
+  border-style: solid;
+}
+
+.xtooltip.buff-highlights .xtooltiptext::after {
+  border-color: transparent transparent transparent rgb(6, 36, 0);
+}
+
+.xtooltip.debuff-highlights .xtooltiptext::after {
+  border-color: transparent transparent transparent rgb(63, 22, 22);
+}

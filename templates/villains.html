@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
+    <title>PyDungeonCrawl - Villains</title>
+
+    <!-- Bootstrap styling -->
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/heroes/"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/heroes.css') }}" />
+
+    <!-- Custom styles for this template -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/hero_custom.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/nav.css') }}"
+    />
+  </head>
+  <body class="bg-dark text-white">
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">PDC</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/heroes">Heroes</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Villains</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api">API Reference</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-shrink-0 mt-5">
+      <!-- BOSSES -->
+      <!-- BOSSSES -->
+      <!-- BOSSES -->
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">
+              Training Dummy
+            </h1>
+            <p class="lead">A simple training dummy with a little snark.</p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Shout At</span> Insult the target and
+                apply Embarassed.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Make A Rockus</span> Insult the
+                entire party and apply Embarassed.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/trainingdummy.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Lost Kobold</h1>
+            <p class="lead">
+              The Lost Kobold is a small, timid creature that has been separated
+              from its tribe. It is weak in combat, but makes up for it with its
+              ability to cry and make you feel bad.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Fumbling Attack</span> Clumsily swipe
+                at the enemy and attempt to harm them.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/koboldchild.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">
+              Kobold Mother
+            </h1>
+            <p class="lead">
+              The Kobold Mother is a fierce creature that fiercely guards her
+              young. She is a formidable opponent in combat, wielding a crude
+              but deadly weapon, and using her ferocity to her advantage. She is
+              much larger and stronger than the Lost Kobold and is able to take
+              more damage. Her fighting style is more aggressive, she will
+              relentlessly pursue the player and will not hesitate to attack
+              them if they are seen as a threat to her offspring. The Kobold
+              Mother is a formidable enemy for the player to face early on, and
+              serves as a reminder that the player's actions have consequences.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Motherly Love</span> A fierce attack
+                dealing enough damage to require your healers attention
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/koboldmother.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Kobold Queen</h1>
+            <p class="lead">
+              The Kobold Queen is the leader of the kobold tribe and commands
+              great respect from her subjects. She is a formidable opponent in
+              combat, wielding a powerful weapon and using her mastery of dark
+              magic to curse her foes. Her attacks are swift and savage, and her
+              strikes are capable of dealing massive damage to the player. She
+              is also able to apply a curse to the player, which will deal
+              damage over time and can only be cured before time runs out. The
+              Kobold Queen is a formidable enemy that will test the player's
+              combat skills and strategic thinking, as they must find a way to
+              cure the curse and defeat her in battle. The player must be
+              careful, for the Queen is more powerful than the previous kobolds,
+              and will not hesitate to kill them with her curse if they are not
+              well prepared.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Savage Strike</span> A fierce attack
+                dealing enough damage to require your healers attention
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Curse</span> A deadly curse and
+                damage over time ability that will kill the player unless they
+                receive a Cure by the party healer.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/koboldqueen.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">
+              Kobold Goddess
+            </h1>
+            <p class="lead">
+              The Kobold Goddess is the ultimate leader of the kobold tribe and
+              the embodiment of their dark powers. She is an imposing figure,
+              larger and more powerful than any of her subjects. She wields a
+              formidable weapon and uses dark magic to curse her foes, similar
+              to the kobold queen, but with even more devastating effects. Her
+              attacks are swift and savage, capable of dealing massive damage to
+              the player. She also has the ability to devour the player's soul,
+              which will instantly kill them if they don't move out of the way.
+              The player must be extremely careful when facing the Kobold
+              Goddess, as her abilities are far more powerful than any they have
+              faced before and they will need to use all their skills and
+              knowledge to defeat her.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Savage Strike</span> A fierce attack
+                dealing enough damage to require your healers attention
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Curse</span> A deadly curse and
+                damage over time ability that will kill the player unless they
+                receive a Cure by the party healer.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Devour Souls</span> The Kobold
+                Goddess will devour your soul if you remain still on the
+                battlefield. You better watch out for the telegraph to see when
+                this is happening!
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/koboldgoddess.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">
+              Savage Mountain Troll
+            </h1>
+            <p class="lead">
+              The Savage Mountain Troll is a massive and fearsome creature that
+              dominates the forest. Standing at an imposing height, the troll is
+              a formidable opponent for the players. It has the ability of
+              self-regeneration, which makes it hard to defeat, and is able to
+              deal massive damage with its single-target attack. The Savage
+              Mountain Troll also has a powerful ability called "Colossal Smash"
+              where it jumps into the air and smashes the ground, causing
+              widespread damage to the surrounding area. Additionally, it can
+              throw boulders at a target position, which can be a deadly
+              surprise for the players. To make things worse, if there is no
+              enemy in melee range, the Savage Mountain Troll can charge towards
+              the nearest target with its death charge. The Savage Mountain
+              Troll is a formidable enemy that requires careful planning and
+              execution to defeat. The players must use all the skills and
+              resources at their disposal to defeat the creature and emerge
+              victorious.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Self Regeneration</span> The troll
+                will slowly Heal over time
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Decimate</span> A fierce single
+                target attack that will challenge your healers.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Roar of Giants</span> The troll lets
+                out a roar that debilitates your party and applies 10 stacks of
+                Frailty.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Colossal Smash</span> The troll jumps
+                into the air smashing the ground dealing damage to the entire
+                party.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Throw Bolder</span> A telegraphed
+                attack where the troll will identify the furthest target and
+                throw a bolder at their position.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Death Charge</span> If no target is
+                in melee range of the troll for 2 turns it will charge at the
+                nearest target and kill them.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/savagemountaintroll.jpg') }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+    </main>
+  </body>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/hero_custom.js') }}"></script>
+</html>

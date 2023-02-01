@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyDungeonCrawl</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/nav.css') }}"
+    />
+</head>
+<body class="bg-dark text-white">
+
+<!--Navigation-->
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/">PDC</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/heroes">Heroes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/villains">Villains</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/api">API Reference</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+  <main class="flex-shrink-0 bg-dark text-white mt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="display-1">PyDungeonCrawl</h1>
+          <p class="lead">A feature-rich API for battling villains</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+      <div class="row mt-3">
+        <div class="col-3">
+          <a href="/heroes" class="link-light lead">Meet the Heroes</a>
+        </div>
+        <div class="col">
+          <p class="lead">Get to know the heroes, their abilities, and their weaknesses. Skilled players will fully utilize hero synergies to defeat bosses.</p>
+        </div>
+      </div>
+      
+      <div class="row mt-3">
+        <div class="col-3">
+          <a href="/villains" class="link-light lead">Observe the Villains</a>
+        </div>
+        <div class="col">
+          <p class="lead">Get to know the monsters you will face on your journey. Skilled players will take villains' skills into account, choosing heroes to counter or nullify the villains' strengths.</p>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-3">
+          <a href="/api" class="link-light lead">API Reference</a>
+        </div>
+        <div class="col">
+          <p class="lead">Partial API reference with descriptions and usage examples of the relevant properties and methods you can use on your quest.</p>
+          <p class="lead"><strong>NOTE:</strong> This is not a complete API reference, but contains everything you should reasonably use/interact with as a player.</p>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <p class="lead">PyDungeonCrawl is best enjoyed with IPython/Jupyter (lab, notebook), although it's entirely useable on the command line or REPL. By default, the board is blitted to the display every quarter second. On some (windows) machines, this can cause a discomfiting flickering effect.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</html>

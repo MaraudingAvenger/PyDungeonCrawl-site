@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyDungeonCrawl - API Reference</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <!-- Prism (Code highlighting) -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/prism.css') }}"
+    />
+
+    <!-- Custom styling -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/nav.css') }}"
+    />
+  </head>
+  <body class="bg-dark text-white">
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">PDC</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/heroes">Heroes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/villains">Villains</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">API Reference</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="bg-dark mt-5">
+      <!-- Template -->
+      <div class="container">
+        <h1 class="bg-dark text-white">Structure</h1>
+        <p class="text-muted">
+          Below is a small code template to get you started using the PyDungeonCrawl library.
+        </p>
+        <p class="text-muted">
+          In general, everything begins with a level. If you think of <code class="language-python">pydungeoncrawl</code> as a board game, the level represents the board that the game is played on. Select a level from the <code class="language-python">pydungeoncrawl.levels</code> module.
+        </p>
+        <p class="text-muted">
+          Select a boss to battle against from the <code class="language-python">pydungeoncrawl.bosses</code> module. (See the <a href="/villains">Villains</a> section for more information)
+        </p>
+        <p class="text-muted">
+          Select a party of heroes consisting of one tank, one healer, and two damage dealers. (See the <a href="/heroes">Heroes</a> section for more information)
+        </p>
+
+<pre><code class="language-python">
+# import a level from pydungeoncrawl.levels
+from pydungeoncrawl.levels import MovementTraining
+
+# import a boss from pydungeoncrawl.bosses
+from pydungeoncrawl.bosses import Golem
+
+# import heroes and the party class from pydungeoncrawl.heroes
+from pydungeoncrawl.heroes import Shaman, Paladin, Ranger, Bard, Party
+
+# instantiate heroes and the boss
+shaman = Shaman("Seamus")
+paladin = Paladin("Perry")
+ranger = Ranger("Ruprect")
+bard = Bard("Barry")
+
+boss = Golem()
+
+# instantiate a party using the heroes
+party = Party(shaman, paladin, ranger, bard)
+
+# instantiate a level using the party and boss
+game = MovementTraining(party=party, boss=boss)
+
+for turn in game:
+    # put all your logic here
+    ...
+        
+</code></pre>
+      </div>
+
+      <hr />
+
+      <!--------------- Pawn Stuff ------------------>
+      <div class="container">
+        <h1 class="bg-dark text-white">
+          Pawn (<code class="language-python">Character</code> and
+          <code class="language-python">Boss</code> base class)
+        </h1>
+
+        <h2><small class="text-muted">Properties</small></h2>
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption><code class="language-python">Pawn</code> built in properties</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="lead">Property</th>
+              <th scope="col" class="lead">Type</th>
+              <th scope="col" class="lead">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.name</code>
+              </th>
+              <td><code class="language-python">str</code></td>
+              <td>
+                The name of the pawn. Example:
+                <pre><code class="language-python">hero = Paladin('Perry')</code>
+<code class="language-python">hero.name # 'Perry'</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.position</code>
+              </th>
+              <td><code class="language-python">tuple[int, int]</code></td>
+              <td>
+                The position of the pawn on the board. Example:
+                <pre><code class="language-python">hero = Paladin('Perry')</code>
+<code class="language-python">hero.position # Point(0, 0)</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.active_effects</code>
+              </th>
+              <td><code class="language-python">list[str]</code></td>
+              <td>
+                All current active effects on the pawn in the form
+                <code class="language-python">['effect 1', 'effect 2', ...]</code>. Example:
+                <pre><code class='language-python'>hero.active_effects # [ 'might', 'blind', 'poison']</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.blinded</code>
+                <code class="language-python">pawn.poisoned</code>
+                <code class="language-python">pawn.rooted</code>
+              </th>
+              <td><code class="language-python">bool</code></td>
+              <td>
+                <code class="language-python">True</code> or
+            <code class="language-python">False</code> depending on if the pawn
+            is currently being affected by the corresponding effect. Example:
+            <pre><code class="language-python">hero.blinded  # False</code>
+<code class="language-python">boss.poisoned # True</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.cooldowns</code>
+              </th>
+              <td><code class="language-python">dict[str, int]</code></td>
+              <td>
+                A dictionary of all current cooldowns on the pawn in the
+                form <code class="language-python">{'cooldown 1': 0, 'cooldown 2': 3, ...}</code>. Example:
+                <pre><code class='language-python'>hero.cooldowns # {'smite': 1, 'divine shield': 3}</code></pre>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.health</code>
+              </th>
+              <td><code class="language-python">int</code></td>
+              <td>
+                The current health of the pawn. Example:
+                <pre><code class='language-python'>hero.health # 120</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.health_percent</code>
+              </th>
+              <td><code class="language-python">int</code></td>
+              <td>
+                The health of the pawn as a percentage of <code class="language-python">pawn.health_max</code>. Example:
+                <pre><code class='language-python'>hero.health_percent # 0.43</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.is_alive</code>
+              </th>
+              <td><code class="language-python">bool</code></td>
+              <td>
+                Whether or not the pawn is alive. Example:
+                <pre><code class='language-python'>hero.is_alive # True</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.points_behind</code>
+              </th>
+              <td>
+                <code class="language-python">list[Point]</code>
+              </td>
+              <td>
+                Gets the three points that make up what is "behind" the character. This is useful for determining if a character is behind another character, or if a character is in range of an ability. <code class="language-python">pawn.is_behind()</code> is a convenience function that uses this property. Example:
+            <pre><code class='language-python'>hero.points_behind # [Point(5, 5), Point(5, 6), Point(5, 7)]</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.vulnerabilities</code>
+                <code class="language-python">pawn.resistances</code>
+              </th>
+              <td><code class="language-python">list[Effect]</code></td>
+              <td>
+                The pawn's vulnerabilities and resistances. These are the effects that the pawn is vulnerable to or resistant to, respectively. Example:
+                <pre><code class='language-python'>boss.vulnerabilities # [Effect("Poison Vulnerability"), Effect("Magic Vulnerability"),...]</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><small class="text-muted">Methods</small></h2>
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            <code class="language-python">Character</code> and <code class="language-python">Boss</code> built in methods.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="lead">Entry</th>
+              <th scope="col" class="lead">Arguments</th>
+              <th scope="col" class="lead">Returns</th>
+              <th scope="col" class="lead">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">repr(pawn)</code>
+              </th>
+              <td>None</td>
+              <td><code class="language-python">str</code></td>
+              <td>
+                The repr for a
+                <code class="language-python">Character</code> displays the name,
+                position, health, and symbol of the character. Example:
+                <pre><code class='language-python'>hero = Paladin('Perry')</code>
+<code class='language-python'>repr(hero) # Character(Perry, (0, 0), 120/120, ⚜️)</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.distance_to</code>
+                <code class="language-python">pawn.distance_from</code>
+              </th>
+              <td>
+                <code class="language-python">Point</code>,
+                <code class="language-python">Pawn</code>,
+                <code class="language-python">Square</code> or tuple of (x,y) coordinates.
+              </td>
+              <td><code class="language-python">float</code></td>
+              <td>
+                Get the distance between the pawn and a <code class="language-python">Point</code>, something with a <code class="language-python">position</code> attribute (<code class="language-python">Pawn</code>,<code class="language-python">Square</code>, etc.) or tuple of (x,y) coordinates. e.g.: <br />
+            <pre><code class='language-python'>hero.distance_to( boss ) # 13.1555</code>
+<code class='language-python'>hero.distance_to( (5, 5) ) # 1.41</code>
+<code class='language-python'>hero.distance_from( board.at(5, 5) ) # 1.41</code></pre>
+              </td>
+            </tr><tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.is_behind</code>
+              </th>
+              <td><code class="language-python">Pawn</code></td>
+              <td><code class="language-python">bool</code></td>
+              <td>
+                Returns <code class="language-python">True</code> or
+                <code class="language-python">False</code> depending on if the pawn
+                is behind the specified <code class="language-python">Pawn</code>,
+                e.g.
+                <pre><code class='language-python'>hero.is_behind( boss ) # True</code>
+<code class='language-python'>boss.is_behind( hero ) # False</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.move_up</code><br />
+                <code class="language-python">pawn.move_down</code><br />
+                <code class="language-python">pawn.move_left</code><br />
+                <code class="language-python">pawn.move_right</code><br />
+                <code class="language-python">pawn.move_up_left</code><br />
+                <code class="language-python">pawn.move_up_right</code><br />
+                <code class="language-python">pawn.move_down_left</code><br />
+                <code class="language-python">pawn.move_down_right</code>
+              </th>
+              <td>None</td>
+              <td>None</td>
+              <td>
+                Move the pawn in the specified direction (up, down, left, right, or diagonally). Example:
+                <pre><code class='language-python'>hero.move_up()</code></pre>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.move_toward</code>
+              </th>
+              <td>
+                <code class="language-python">Point</code>, <code class="language-python">Pawn</code>, <code class="language-python">Square</code>, tuple (x,y)
+              </td>
+              <td>None</td>
+              <td>
+                Move one square in a straight line toward the provided <code class="language-python">Pawn</code> or <code class="language-python">Point</code>, as calculated using Bresenham's algorithm. Does not take into account impassible or dangerous terrain -- that is, using this movement method, the pawn might attempt to move into a wall and fail the move. Example:
+            <pre><code class='language-python'>hero.move_toward( boss )</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.resistant_to</code>
+                <code class="language-python">pawn.vulnerable_to</code>
+              </th>
+              <td>
+                <code class="language-python">Literal['fire','frost','poison','magic']</code>
+              </td>
+              <td>
+                <code class="language-python">bool</code>
+              </td>
+              <td>
+                Returns <code class="language-python">True</code> or <code class="language-python">False</code> depending on if the pawn is vulnerable to or resistant to the specified element. Example:
+                <pre><code class='language-python'>boss.vulnerable_to("fire") # True</code>
+<code class='language-python'>hero.vulnerable_to("poison") # False</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.stacks</code>
+              </th>
+              <td><code class="language-python">str</code></td>
+              <td><code class="language-python">int</code></td>
+              <td>
+                The number of stacks of the specified effect on the pawn. Example:
+                <pre><code class='language-python'>boss.stacks("Poison") # 3</code>
+<code class='language-python'>hero.stacks("Might") # 5</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pawn.is_alive</code>
+              </th>
+              <td>None</td>
+              <td><code class="language-python">bool</code></td>
+              <td>
+                Whether or not the pawn is alive. Example:
+                <pre><code class='language-python'>hero.is_alive # True</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <hr />
+<!-- 
+      <div class="container">
+        <div class="row border-bottom">
+          <div class="col-2 mt-4 lead">Entry</div>
+          <div class="col-3 mt-4 lead">Arguments</div>
+          <div class="col-2 mt-4 lead">Returns</div>
+          <div class="col-5 mt-4 lead">Description</div>
+        </div>
+        
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">repr(pawn)</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4"><code class="language-python">str</code></div>
+          <div class="col-5 mt-4">
+            The repr for a
+            <code class="language-python">Character</code> displays the name,
+            position, health, and symbol of the character. Example:
+            <pre><code class='language-python'>hero = Paladin('Perry')</code>
+<code class='language-python'>repr(hero) # Character(Perry, (0, 0), 120/120, ⚜️)</code></pre>
+          </div>
+        </div>
+        
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.active_effects</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">
+            <code class="language-python">list[str]</code>
+          </div>
+          <div class="col-5 mt-4">
+            shows all current active effects on the pawn in the form
+            <code class="language-python">['effect 1', 'effect 2', ...]</code>. Example:
+            <pre><code class='language-python'>hero.active_effects # [ 'might', 'blind', 'poison']</code></pre>
+          </div>
+        </div>
+        
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.blinded</code><br />
+            <code class="language-python">pawn.poisoned</code><br />
+            <code class="language-python">pawn.rooted</code><br />
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
+          <div class="col-5 mt-4">
+            Returns <code class="language-python">True</code> or
+            <code class="language-python">False</code> depending on if the pawn
+            is currently being affected by the corresponding effect. Example:
+            <pre><code class="language-python">hero.blinded  # False</code>
+<code class="language-python">boss.poisoned # True</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.cooldowns</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">
+            <code class="language-python">dict[str,int]</code>
+          </div>
+          <div class="col-5 mt-4">
+            shows all current abilities that are on cooldown in the form
+            <code class="language-python"
+              >{"ability name" : turns_until_ready}</code>. Example:
+            <pre><code class='language-python'>hero.cooldowns # {'strike': 1, 'healing word': 2}</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.distance_to</code><br />
+            <code class="language-python">pawn.distance_from</code>
+          </div>
+          <div class="col-3 mt-4">
+            <code class="language-python">Point</code>,
+            <code class="language-python">Pawn</code>,
+            <code class="language-python">Square</code>, or Tuple
+            <code class="language-python">(x, y)</code>
+          </div>
+          <div class="col-2 mt-4"><code class="language-python">float</code></div>
+          <div class="col-5 mt-4">
+            Get the distance between the pawn and a
+            <code class="language-python">Point</code>, something with a
+            <code class="language-python">position</code> attribute (<code
+              class="language-python"
+              >Pawn</code
+            >,<code class="language-python">Square</code>, etc.) or tuple of
+            (x,y) coordinates. e.g.: <br />
+            <pre><code class='language-python'>hero.distance_to( boss ) # 13.1555</code>
+<code class='language-python'>hero.distance_to( (5, 5) ) # 1.41</code>
+<code class='language-python'>hero.distance_from( board.at(5, 5) ) # 1.41</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.stacks</code>
+          </div>
+          <div class="col-3 mt-4">
+            <code class="language-python">str</code>: the name of an effect
+          </div>
+          <div class="col-2 mt-4"><code class="language-python">int</code></div>
+          <div class="col-5 mt-4">
+            Get the number of stacks of a specific effect affecting the pawn. Example:
+            <pre><code class='language-python'>hero.stacks("Might") # 5</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.position</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4"><code class="language-python">Point</code></div>
+          <div class="col-5 mt-4">
+            The pawn's position represented as a Point object (basically a tuple
+            with <code class="language-python">point.x</code> and
+            <code class="language-python">point.y</code>)
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.health</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4"><code class="language-python">int</code></div>
+          <div class="col-5 mt-4">The pawn's current health amount</div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.health_percent</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">
+            <code class="language-python">float</code> (between 0 and 1)
+          </div>
+          <div class="col-5 mt-4">
+            The pawn's current health as a percentage of their maximum health.
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.is_behind</code>
+          </div>
+          <div class="col-3 mt-4"><code class="language-python">Pawn</code></div>
+          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
+          <div class="col-5 mt-4">
+            Returns <code class="language-python">True</code> or
+            <code class="language-python">False</code> depending on if the pawn
+            is behind the specified <code class="language-python">Pawn</code>,
+            e.g.
+            <pre><code class='language-python'>hero.is_behind( boss ) # True</code>
+<code class='language-python'>boss.is_behind( hero ) # False</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.move_up</code><br />
+            <code class="language-python">pawn.move_down</code><br />
+            <code class="language-python">pawn.move_left</code><br />
+            <code class="language-python">pawn.move_right</code><br />
+            <code class="language-python">pawn.move_up_left</code><br />
+            <code class="language-python">pawn.move_up_right</code><br />
+            <code class="language-python">pawn.move_down_left</code><br />
+            <code class="language-python">pawn.move_down_right</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">None</div>
+          <div class="col-5 mt-4">
+            Move one square in the specified direction (up, down, left, right,
+            or diagonal).
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.move_toward</code>
+          </div>
+          <div class="col-3 mt-4">
+            <code class="language-python">Pawn</code> or
+            <code class="language-python">Point</code>
+          </div>
+          <div class="col-2 mt-4">
+            <code class="language-python">None</code>
+          </div>
+          <div class="col-5 mt-4">
+            Move one square in a straight line toward the provided
+            <code class="language-python">Pawn</code> or
+            <code class="language-python">Point</code>, as calculated using
+            Bresenham's algorithm. Does not take into account impassible or
+            dangerous terrain -- that is, using this movement method, the pawn
+            might attempt to move into a wall and fail the move. Example:
+            <pre><code class='language-python'>hero.move_toward( boss )</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.points_behind</code><br />
+            <code class="language-python">pawn.positions_behind</code>
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">
+            <code class="language-python">list[Point]</code>
+          </div>
+          <div class="col-5 mt-4">
+            Gets the three points that make up what is "behind" the character.
+            This is useful for determining if a character is behind another
+            character, or if a character is in range of an ability.
+            <code class="language-python">pawn.is_behind()</code> is a
+            convenience function that uses this property. Example:
+            <pre><code class='language-python'>hero.points_behind # [Point(5, 5), Point(5, 6), Point(5, 7)]</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.resistances</code>
+            <code class="language-python">pawn.vulnerabilities</code><br />
+          </div>
+          <div class="col-3 mt-4">None</div>
+          <div class="col-2 mt-4">
+            <code class="language-python">list[Effect]</code>
+          </div>
+          <div class="col-5 mt-4">
+            The pawn's vulnerabilities and resistances. These are the effects
+            that the pawn is vulnerable to or resistant to, respectively. Example:
+            <pre><code class='language-python'>boss.vulnerabilities # [Effect("Poison Vulnerability", duration=3), Effect("Magic Vulnerability", duration=1)]</code></pre>
+          </div>
+        </div>
+        <div class="row border-bottom">
+          <div class="col-2 mt-4">
+            <code class="language-python">pawn.resistant_to</code>
+            <code class="language-python">pawn.vulnerable_to</code><br />
+          </div>
+          <div class="col-3 mt-4">
+            <code class="language-python"
+              >Literal["fire","frost","magic","poison"]</code
+            >
+          </div>
+          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
+          <div class="col-5 mt-4">
+            Returns <code class="language-python">True</code> or
+            <code class="language-python">False</code> depending on if the pawn
+            is vulnerable to or resistant to the specified element. Example:
+            <pre><code class='language-python'>boss.vulnerable_to("fire") # True</code>
+<code class='language-python'>hero.vulnerable_to("poison") # False</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+-->
+      <!--------------- Party Stuff ------------------>
+      <div class="container">
+        <h1 class="bg-dark text-white">
+          Party (a container of multiple
+          <code class="language-python">Character</code>s)
+        </h1>
+
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            Party interface descriptions.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="lead">Entry</th>
+              <th scope="col" class="lead">Arguments</th>
+              <th scope="col" class="lead">Returns</th>
+              <th scope="col" class="lead">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom"><code class="language-python">repr(party)</code></th>
+              <td>None</td>
+              <td><code class="language-python">str</code></td>
+              <td>
+                Example:
+                <pre><code class='language-python'>
+shaman = Shaman("Seamus")
+paladin = Paladin("Perry")
+ranger = Ranger("Ruprect")
+bard = Bard("Barry")
+
+party = Party(shaman, paladin, ranger, bard)
+repr(party) # Party((Character(Seamus, (1, 27), 100/100, 🍄), Character(Perry, (2, 27), 120/120, ⚜️),...
+                </code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">party.lowest_health</code><br />
+                <code class="language-python">party.highest_health</code>
+              </th>
+              <td>None</td>
+              <td><code class="language-python">Character</code></td>
+              <td>
+                Returns the character with the lowest or highest health,
+                respectively. Example:
+                <pre><code class='language-python'>party.lowest_health # Character(Ruprect, (1, 28), 60/80, 🏹)</code>
+<code class='language-python'>party.highest_health # Character(Perry, (15, 14), 120/120, ⚜️)</code></pre>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">party.lowest_health_percent</code><br />
+                <code class="language-python">party.highest_health_percent</code>
+              </th>
+              <td>None</td>
+              <td><code class="language-python">Character</code></td>
+              <td>
+                Returns the character with the lowest or highest health as a
+                percentage of their maximum health, respectively. Example:
+                <pre><code class='language-python'>party.lowest_health # Rogue('Rory', health=38/100, '🗡️')</code>
+<code class='language-python'>party.highest_health # Guardian('Gerry', health=102/110, '🛡️')</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <!--------------- Boss Stuff ------------------>
+      <div class="container">
+        <h1 class="bg-dark text-white">Boss</h1>
+        <small class="text-muted">Most things available on Pawn, with the addition of:</small>
+
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            Boss interface descriptions.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="lead">Entry</th>
+              <th scope="col" class="lead">Arguments</th>
+              <th scope="col" class="lead">Returns</th>
+              <th scope="col" class="lead">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">repr(boss)</code>
+              </th>
+              <td>None</td>
+              <td>list[str]</td>
+              <td>
+                The repr for a
+                <code class="language-python">Boss</code> displays the name,
+                class, and health of the boss. Example:
+                <pre><code class='language-python'>from pydungeoncrawl.bosses import Golem</code>
+<code class='language-python'>boss = Golem()</code>
+<code class='language-python'>repr(boss) # "Thunk (Golem), 20000/20000 HP"</code></pre>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">boss.telegraph</code>
+              </th>
+              <td>None</td>
+              <td><code class="language-python">str</code></td>
+              <td>
+                A message indicating some upcoming move or action that the boss
+                will take. If the boss is telegraphing something, chances are
+                that it's important to the survival of the party.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+      <!--------------- Game/Board Stuff ------------------>
+      <!-- Square -->
+      <div class="container" id>
+        
+        <h1 class="bg-dark text-white">Square</h1>
+        <small class="text-muted">A single play space of a <code class="language-python">Board</code> (When creating a <code class="language-python">Game</code> object that includes a <code class="language-python">Board</code>, the board is stored in the <code class="language-python">game.board</code> property)</small>
+        
+
+        <h2><small class="text-muted">Properties</small></h2>
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            A description of the properties of the Square class
+          </caption>
+          <thead>
+            <th scope="col" class="lead">Entry</th>
+            <th scope="col" class="lead">Returns</th>
+            <th scope="col" class="lead">Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.position</code><br />
+              </th>
+              <td class="col">
+                <code class="language-python">Point</code>
+              </td>
+              <td class="col">
+                the position at which the <code class="language-python">Square</code>
+                is located. Example:
+                <pre><code class="language-python">board.at( (5, 5) ).position # Point(5, 5)</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.symbol</code>
+              </th>
+              <td class="col">
+                <code class="language-python">str</code>
+              </td>
+              <td class="col">
+                The string representation of the square when the board is displayed. Example:
+                <pre><code class="language-python">board.at( (9, 9) ).symbol # '🟥'</code></pre>
+                Note: the symbol will become the occupant's symbol if the square is occupied.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.impassable</code>
+              </th>
+              <td class="col">
+                <code class="language-python">bool</code>
+              </td>
+              <td class="col">
+                Whether or not the <code class="language-python">Square</code>
+                is impassable due to being made of something impassable (wall, void)
+                or because it is occupied by someone. Example:
+                <pre><code class="language-python">board.at( (5, 5) ).impassable # False</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.occupied</code>
+              </th>
+              <td class="col">
+                <code class="language-python">bool</code>
+              </td>
+              <td class="col">
+                Whether or not the <code class="language-python">Square</code>
+                is occupied by someone. Example:
+                <pre><code class="language-python">board.at( (7, 3) ).occupied # True</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.occupant</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Pawn|None</code>
+              </td>
+              <td class="col">
+                The occupant of the <code class="language-python">Square</code>
+                if it is occupied, else <code class="language-python">None</code>. Example:
+                <pre><code class="language-python">board.at( (7, 3) ).occupant # Character(Perry, (7, 3), 120/120, ⚜️) </code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.damage</code>
+              </th>
+              <td class="col">
+                <code class="language-python">int</code>
+              </td>
+              <td class="col">
+                The amount of damage that the <code class="language-python">Square</code>
+                deals to anyone who steps on it. Example:
+                <pre><code class="language-python">board.at( (9, 9) ).damage # 10000</code></pre>
+                Note: This value only relevant if the <code class="language-python">Square</code>
+                is lava or burning.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.is_burning</code>
+              </th>
+              <td class="col">
+                <code class="language-python">bool</code>
+              </td>
+              <td class="col">
+                Whether or not the <code class="language-python">Square</code>
+                is on fire. Example:
+                <pre><code class="language-python">board.at( (7, 3) ).is_burning # False</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">square.is_lava</code>
+              </th>
+              <td class="col">
+                <code class="language-python">bool</code>
+              </td>
+              <td class="col">
+                Whether or not the <code class="language-python">Square</code>
+                is lava. Example:
+                <pre><code class="language-python">board.at( (9, 9) ).is_lava # True</code></pre>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+
+      </div>
+      
+      <hr />
+      
+      <!-- Board -->
+      <div class="container">
+        <!--
+        game.board.melee_range(pawn)
+        game.board.dangerous_points()
+        game.board.dangerous_positions()
+        game.board.impassable_points()
+        game.board.impassable_positions()
+      -->
+        <h1 class="bg-dark text-white">Board (the play area)</h1>
+        <small class="text-muted">A collection of <code class="language-python">Square</code>s (When creating a <code class="language-python">Game</code> object that includes a <code class="language-python">Board</code>, stored in the <code class="language-python">game.board</code> property)</small>
+
+        <h2><small class="text-muted">Properties</small></h2>
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            A description of the properties of the <code class="language-python">Board</code> class.
+          </caption>
+          <thead>
+            <th scope="col" class="lead">Entry</th>
+            <th scope="col" class="lead">Returns</th>
+            <th scope="col" class="lead">Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.dangerous_points</code><br />
+                <code class="language-python">board.impassable_points</code>
+              </th>
+              <td class="col">
+                <code class="language-python">list[Point]</code>
+              </td>
+              <td class="col">
+                A list of all the points on the board that are dangerous or impassable, respectively. Example:
+                <pre><code class="language-python">game.board.dangerous_points # [Point(5, 5), Point(6, 6), Point(7, 7)]</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.impassable_positions</code><br />
+                <code class="language-python">board.dangerous_positions</code>
+              </th>
+              <td class="col">
+                <code class="language-python">list[tuple[int,int]]</code>
+              </td>
+              <td class="col">
+                Like <code class="language-python">board.impassable_points</code>, but a list of tuples
+                instead of a list of <code class="language-python">Point</code>s. Example:
+                <pre><code class="language-python">game.board.impassable_positions # [(5, 5), (6, 6), (7, 7)]</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2><small class="text-muted">Methods</small></h2>
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            A description of the board API
+          </caption>
+          <thead>
+            <th scope="col" class="lead">Entry</th>
+            <th scope="col" class="lead">Arguments</th>
+            <th scope="col" class="lead">Returns</th>
+            <th scope="col" class="lead">Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.at</code><br />
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int]</code>
+              </td>
+              <td class="col">
+                <code class="language-python">Square|None</code>
+              </td>
+              <td class="col">
+                Returns the <code class="language-python">Square</code> at the
+                specified point. If there is no square at the specified point,
+                returns <code class="language-python">None</code>. Example:
+                <pre><code class="language-python">board.at(Point(5, 5)) # Square(Point(5, 5), "⬜")</code>
+<code class="language-python">board.at((5, 5)) # Square(Point(5, 5), "⬜")</code>
+<code class="language-python">board.at(Point(100, 100)) # None</code></pre>
+              </td>
+            </tr>
+            
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.get_adjacent_squares</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int]</code>
+              </td>
+              <td class="col">
+                <code class="language-python">list[Square]</code>
+              </td>
+              <td class="col">
+                Returns a list of all the squares orthogonally or diagonally adjacent to the
+                specified point. Example:
+                <pre><code class="language-python">game.board.get_adjacent_squares(Point(5, 5)) # [Square(Point(5, 4), "⬜"), Square(Point(5, 6), "⬜"),...]</code></pre>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.get_adjacent_entities</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int]</code>
+              </td>
+              <td class="col">
+                <code class="language-python">list[Pawn]</code>
+              </td>
+              <td class="col">
+                Returns a list of all the pawns orthogonally or diagonally adjacent to the
+                specified point. Example:
+                <pre><code class="language-python">game.board.get_adjacent_entities((5, 5)) # [Character(Perry, (0, 0), 120/120, ⚜️),...]</code></pre>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">board.get_squares_in_radius</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int]</code>,
+                <code class="language-python">int</code>
+              </td>
+              <td class="col">
+                <code class="language-python">list[Square]</code>
+              </td>
+              <td class="col">
+                Returns a list of all the squares within the specified radius of the
+                specified point. Example:
+                <pre><code class="language-python">game.board.get_squares_in_radius((5, 5), 2) # [Square(Point(5, 4), "⬜"), Square(Point(5, 6), "⬜"),...]</code></pre>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <hr />
+      <div class="container">
+        <h1 class="bg-dark text-white">Location Utilities</h1>
+        <small class="text-muted">A collection of utilities found in the <code class="language-python">pydungeoncrawl.utilities.location</code> module</small>
+        
+        <table class="table table-border-bottomed table-hover table-dark">
+          <caption>
+            A description of the board API
+          </caption>
+          <thead>
+            <th scope="col" class="lead">Entry</th>
+            <th scope="col" class="lead">Arguments</th>
+            <th scope="col" class="lead">Returns</th>
+            <th scope="col" class="lead">Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">class pydungeoncrawl.utilities.location.Point</code>
+              </th>
+              <td class="col">
+                <code class="language-python">int, int</code>
+              </td>
+              <td class="col">
+                <code class="language-python">Point</code>
+              </td>
+              <td class="col">
+                A class representing a point in 2-dimensional space. Example:
+                <pre>
+<code class="language-python">from pydungeoncrawl.utilities.location import Point</code>
+<code class="language-python">p = Point(4, 6)</code>
+<code class="language-python">p.x # 4</code>
+<code class="language-python">p.y # 6</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pydungeoncrawl.utilities.location.distance_between</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int], Point|tuple[int,int]</code>
+              </td>
+              <td class="col">
+                <code class="language-python">float</code>
+              </td>
+              <td class="col">
+                Returns the straight line distance between two points. Example:
+                <pre><code class="language-python">distance_between((5, 5), (10, 10)) # 7.0710678118654755</code></pre>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row border-bottom">
+                <code class="language-python">pydungeoncrawl.utilities.location.bresenham</code>
+              </th>
+              <td class="col">
+                <code class="language-python">Point|tuple[int,int], Point|tuple[int,int]</code>
+              </td>
+              <td class="col">
+                <code class="language-python">Generator[Point]</code>
+              </td>
+              <td class="col">
+                Generate the integer points on a line between "origin" and "destination",
+                not including "origin" using bresenham's line algorithm. Example:
+                <pre><code class="language-python">list(bresenham((5, 5), (8, 9))) # [(6, 6), (6, 7), (7, 8), (8, 9)]</code></pre>
+                Note: This is the algorithm used in the <code class="language-python">pawn.move_toward</code>
+                method. It is unaware of the board and does not take into account any obstacles or dangerous
+                terrain; it simply generates a "pixelated" line between two points.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+</html>

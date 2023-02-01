@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.104.2" />
+    <title>PyDungeonCrawl - Heroes</title>
+
+    <!-- Bootstrap styles -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.2/examples/heroes/"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/heroes.css') }}" />
+
+    <!-- Custom styling (non-bootstrap) -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/hero_custom.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/nav.css') }}"
+    />
+  </head>
+  <body class="bg-dark text-white">
+    <!--Navigation-->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">PDC</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Heroes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/villains">Villains</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api">API Reference</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-shrink-0 mt-5">
+      <!-- TANKS -->
+      <!-- TANKS -->
+      <!-- TANKS -->
+
+      <div class="container px-4 heroes-padding hero-tank">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Guardian</h1>
+            <p class="lead">
+              The Guardian is a powerful and experienced tank, known for their
+              mastery of defensive combat techniques. They are exceptionally
+              durable and able to withstand a great deal of damage, able to
+              strike the target, reduce the damage they receive, reflect damage,
+              stun the target, and redirect damage they receive to heal the
+              party and apply toughness to them.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Defensive Strike</span> Strike the
+                target and apply 2 stacks of Toughness to yourself.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Shield Stance</span> Take on a
+                defensive stance reducing damage you receive by 75% for 3 turns
+                but the Guardian cannot take any action during this time. At the
+                end you will receive 5 stacks of Toughness for each hit taken.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Shield Spike</span> Give yourself 50%
+                Reflect for 2 turns. Consumes your Toughness and adds it to the
+                Reflect amount.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Shield Bash</span> Bash the target
+                with your shield and apply Stun for 1 turn.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Inspiration</span> All damage the
+                Guardian receives will instead Heal the Party and apply 1 stack
+                of Toughness for 5 turns.
+              </p>
+            </div>
+          </div>
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/guardian1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image inner-shadow"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-tank">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Paladin</h1>
+            <p class="lead">
+              The Paladin is a powerful holy warrior tank, balanced between
+              defensive and offensive capabilities. They can strike the target
+              with holy damage and apply frailty, consume frailty to increase
+              their own toughness, create barriers to absorb and store damage,
+              empower allies next attack with their toughness and trigger a holy
+              nova to deal damage and heal the party while refreshing their own
+              toughness.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Holy Strike</span> Strike the target
+                and apply 1 stack of Frailty that lasts 5 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Exorcise</span> Excise the target and
+                consume all stacks of Frailty to give yourself double the stacks
+                in Toughness for 3 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Divine Protection</span> Apply a
+                Barrier to target or self to absorb and store the damage. Once
+                this barrier absorbs damage it will expire on that turn. Lasts
+                up to 10 turns or until damage received.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Prayer</span> Consume your Toughness
+                stacks and buff the Party increasing the power of their
+                NextAttack by the percentage of Toughness consumed.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Holy Nova</span> Damage absorbed by
+                Divine Protection's Barrier is used to trigger a holy nova on
+                your target dealing damage and will also Heal all Party members.
+                Refreshes your Toughness stacks and applies your Toughness
+                stacks to the group for 5 turns.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/paladin1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-tank">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Berzerker</h1>
+            <p class="lead">
+              The Berzerker is a savage fighter who is focused solely on
+              destruction. They are known for their relentless and brutal
+              fighting style, often disregarding their own defense in order to
+              deal as much damage as possible to their enemies. As they fight,
+              they become increasingly bloodthirsty, losing themselves in battle
+              and becoming a force of destruction on the battlefield. They are
+              skilled in various forms of melee combat and have little regard
+              for their own safety, making them a formidable opponent to anyone
+              who stands in their way. Berzerkers are often seen as wild and
+              uncontrollable, driven by their desire for violence and
+              destruction.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Charge</span> Instantly move yourself
+                to the front of the target.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Frenzied Attack</span> Strike the
+                target and apply 2 stacks of Might and ExposeWeakness to self
+                that last until removed.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Rampage</span> A devastating attack
+                that applies 8 stacks of Might and 4 ExposeWeakness to yourself
+                that last until removed but cripples the enemy and applies 4
+                stacks of MagicVulnerability, ExposeWeakness, and also
+                PoisonVulnerability.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Parry</span> Gain the Parry effect and remove all
+                stacks of Might and ExposeWeakness on self. If you are attacked
+                this turn receive 2 stacks of Toughness. Successfully parrying
+                an attack triggers 4 stacks of ExposeWeakness on the target for
+                3 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Battle Shout</span> Party receives
+                all of your Might stacks for 10 turns.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/berzerker1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- HEALERS -->
+      <!-- HEALERS -->
+      <!-- HEALERS -->
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-healer">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Cleric</h1>
+            <p class="lead">
+              The Cleric class is a supportive class that specializes in healing
+              and defensive abilities. They have the ability to instantly heal
+              allies, apply stuns, deal damage with a debuff, remove negative
+              effects and create a barrier that absorbs damage and empowers
+              their next attack.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Healing Word</span> Instantly Heal
+                the target for 50% health which scales further with buffs and
+                equipment.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Jolt</span> Apply Stun on the target
+                for 2 turns. 3 turns if the target has MagicVulnerability
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Smite</span> Smite the target and
+                apply 1 stack of Frailty. Damage absorbed by Group Barrier is
+                added and triggers 5 additional stacks of Frailty.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Cleanse</span> Casts Cure on Target
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Group Barrier</span> Create a Barrier
+                that absorbs 100% of damage received for 4 turns. All damage
+                absorbed is used to empower your next Smite.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/cleric1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-healer">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Druid</h1>
+            <p class="lead">
+              The Druid class is a versatile class that specializes in nature
+              magic providing both healing and crowd control abilities. They
+              have the ability to heal allies, root enemies, apply debuffs,
+              remove negative effects and create a shield that reflects damage
+              and increases party's resistance for a certain duration.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Swift Mend</span> Instantly Heal the
+                target for 30% and then an additional 30% over 2 turns which
+                scales further with buffs and equipment.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Grasping Roots</span> Casts Root on
+                target that lasts 4 turns. Also applies 5 stacks of
+                ExposeWeakness if target has MagicVulnerability
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Blaze</span> Blasts the target with
+                intense heat and apply 1 stack of ExposeWeakness and
+                FireResistance
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Salve</span> Casts Cure on Target
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Group Thornshield</span> Apply
+                Reflect and 5 stacks of Toughness to Party for 8 turns
+              </p>
+            </div>
+          </div>
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/druid1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-healer">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Shaman</h1>
+            <p class="lead">
+              The Shaman class is a versatile class that specializes in
+              spiritual magics providing both healing and buffing allies, as
+              well as debuffing enemies. They have the ability to heal allies
+              over time, apply poison to enemies, remove negative effects , and
+              increase the physical power of the entire party.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Regenerate</span> Apply a Heal over
+                time to the target for 80% health over 5 turns which scales
+                further with buffs and equipment.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Enhancement</span> Apply 5 stacks of
+                Might and Toughness to the target for 3 turns
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Poison Frost</span> Apply a frost
+                based poison to the target and 2 stacks of Frailty for 4 turns.
+                Also applies 1 stack of FrostResistance
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Purge</span> Casts Cure on Target
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Group Infusion</span> Apply 10 stacks
+                of Might to Party for 8 turns
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/shaman1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- DPS -->
+      <!-- DPS -->
+      <!-- DPS -->
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Bard</h1>
+            <p class="lead">
+              The Bard is a versatile musician who uses their music to empower
+              allies and defeat enemies. They can heal party members, provide
+              powerful buffs, remove negative effects, and deal magic damage
+              with their abilities. Their ultimate ability, Crescendo, combines
+              all of their abilities into one powerful song that boosts their
+              allies and damages enemies. With their musical talents, the Bard
+              can be a valuable asset in any party.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Healing Notes</span> All Party
+                members Heal for 10% of their health.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Violent Notes</span> All Party
+                members receive 5 stacks of Might.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Curative Notes</span> All Party
+                members will receive Cure in 2 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Magical Note</span> Play a piercing
+                magical note at the enemy that deals Magic damage and applies 4
+                stacks of ExposeWeakness. Increased to 6 stacks and applies Stun
+                if the target has MagicVulnerability.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Crescendo</span> Combine all your
+                notes into a chaotic lullaby that triggers all bard songs and
+                the NextAttack for all group members will do double damage.
+              </p>
+            </div>
+          </div>
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/bard1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Ranger</h1>
+            <p class="lead">
+              The Ranger is a long-range archer who supports allies with damage,
+              debuffs, and minor healing. They can fire arrows from anywhere in
+              the arena, dealing increased damage the further away they are
+              while applying stacks of Expose Weakness to the target. They also
+              have abilities that apply Poison and Magic vulnerability to the
+              target, making them more vulnerable to damage. The Ranger also has
+              the ability to support allies with instant healing and removing
+              negative effects. With their superior ranged abilities and support
+              skills, the Ranger is a valuable asset in any party.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Shoot</span> Fire an arrow from
+                anywhere in the arena. Damage increased by distance. 3 shots in
+                a row will apply 1 stack of ExposeWeakness for 2 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Virulent Arrow</span> Fire a Poison
+                arrow. If the target is not currently affected by a poison,
+                virulent arrow applies PoisonVulnerability for 3 turns. Counts
+                as a shot but does not apply ExposeWeakness.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Frostfire Arrow</span> Fire an
+                elemental arrow. If the target does not have FireResistance or
+                FrostResistance, frostfire arrow applies 3 stacks of
+                MagicVulnerability. Counts as a shot but does not apply
+                ExposeWeakness.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Field Medicine</span> Instantly Heal
+                the target for 20% and apply Cure.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Murder</span> Send a murder of crows
+                to claw at the target defenses applying Blind and 6 stacks of
+                ExposeWeakness for 4 turns.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/ranger1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Rogue</h1>
+            <p class="lead">
+              The Rogue is a deadly assassin who excels in surprise attacks and
+              quick kills. They can deal double damage and apply debuffs when
+              attacking from behind, apply poison and make the enemy frail,
+              blind the target, and increase the stacks of expose weakness and
+              magic vulnerability on the target. Their ultimate ability, Ambush,
+              allows them to deal massive damage and apply various debuffs when
+              attacking from behind. With their deadly skills and tactics, the
+              Rogue is a formidable force in combat.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Backstab</span> Stab the target.
+                Deals double damage when used from behind. 3 double damage
+                backstabs in a row will apply 2 stacks of ExposeWeakness to the
+                target for 2 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Envenom</span> Apply poison to the
+                target and 4 stacks of Frailty for 4 turns. Does not count as a
+                backstab.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Sand</span> Apply Blind the target
+                this turn.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Shank</span> Stab the target and
+                twist the blade. Doubles the stacks of ExposeWeakness for 2
+                turns and doubles MagicVulnerability on the target. Does not
+                count as a backstab.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Ambush</span> If behind the target
+                provides a powerful 10x damage backstab that applies Blind for 2
+                turns and PoisonVulnerability plus 4 stacks of Frailty for 10
+                turns. Counts as a normal backstab
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/rogue1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Wizard</h1>
+            <p class="lead">
+              The Wizard is a master of the arcane, able to deliver powerful
+              magical attacks and empower them with fire and frost magic. They
+              can blast the target with magic missiles and weave fire and frost
+              magic to create Magic Vulnerability on their enemies. They also
+              have the ability to teleport themselves or allies to anywhere on
+              the battlefield. Their ultimate ability is a powerful lightning
+              strike that deals extra damage and applies additional debuffs if
+              the target already has Magic Vulnerability. The Wizard is a
+              formidable force on the battlefield.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Magic Missile</span> Blast the target
+                with magic missiles! If the target has MagicVulnerability damage
+                is increased to 100 and applies Stun for 1 turn.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Fire Bolt</span> Blast the target
+                with a ball of Fire and apply 2 stacks of FireResistance.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Frost Bolt</span> Blast the target
+                with a ball of Frost and apply 2 stacks of FrostResistance.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Teleport</span> Instantly Teleport
+                self or target to anywhere in the arena.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Lightning Strike</span> Call down a
+                powerful lightning strike on the target! If the target has
+                MagicVulnerability this deals double damage, applies Stun, and 5
+                stacks of MagicVulnerability on the target for 3 turns.
+              </p>
+            </div>
+          </div>
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/wizard1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+
+      <div class="container px-4 heroes-padding hero-dps">
+        <div class="row flex-lg-row-reverse align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3 hero-title">Necromancer</h1>
+            <p class="lead">
+              The Necromancer is a dark master of blood magic, death, and the
+              undead, using their powers to sacrifice themselves and allies to
+              deal damage and cripple enemies. They can blast the target with
+              poison, apply negative effects and delayed damage, sacrifice
+              health for damage, leach health from the target, and summon shades
+              of death to infect the target's soul with a crippling poison. With
+              their dark powers, the Necromancer is a formidable force on the
+              battlefield.
+            </p>
+            <div class="row abilities">
+              <p class="lead ability">
+                <span class="ability-name">Poison Blast</span> Blast the target
+                with Poison waves of pain and apply 1 stack of ExposeWeakness
+                for 4 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Doom</span> Consume and combine the
+                negative effects on the target into a delayed damage effect that
+                triggers after 15 turns or after the 10 turn cooldown you can
+                attempt to further enhance this effect up to 6 times and cause
+                devastating damage.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Blood Magic</span> Sacrifice health
+                for damage.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Life Tap</span> Leach health from the
+                target, receive a Heal for the damage done, and apply 2 stacks
+                of ExposeWeakness for 4 turns. If the target has
+                MagicVulnerability apply PoisonVulnerability for 5 turns.
+              </p>
+              <p class="lead ability">
+                <span class="ability-name">Blood Ritual</span> Sacrifice 50%
+                health from your entire Party to summon a shade of death that
+                moves towards the target. Once reached it will infect the
+                targets soul with a crippling DoT that also applies 10 stacks of
+                ExposeWeakness, MagicVulnerability, and Frailty for 5 turns.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/necromancer1.jpg' ) }}"
+              class="d-block mx-lg-auto img-fluid image"
+              alt="Bootstrap Themes"
+              width="700"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="b-example-divider"></div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hero_custom.js') }}"></script>
+  </body>
+</html>
