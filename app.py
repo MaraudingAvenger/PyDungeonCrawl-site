@@ -1,11 +1,12 @@
 from flask import Flask, render_template
 import os
+import secrets
 
 if not os.path.exists('.secret_key'):
-    with open(".secret_key", "wb") as f:
-        f.write(os.urandom(24))
+    with open(".secret_key", "w") as f:
+        f.write(secrets.token_urlsafe(16))
 
-secret = open('.secret_key', 'rb').read().decode()
+secret = open('.secret_key', 'r').read()
 
 # App Initialization
 app = Flask(__name__)
