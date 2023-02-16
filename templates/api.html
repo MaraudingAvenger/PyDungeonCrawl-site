@@ -44,7 +44,7 @@
               <a class="nav-link" href="/heroes">Heroes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/villains">Bosses</a>
+              <a class="nav-link" href="/villains">Monsters</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="#">API Reference</a>
@@ -59,7 +59,7 @@
         <h1 class="bg-dark text-white">Installation</h1>
         <p class="text-muted">
           To install <code class="language-python">pydungeoncrawl</code>:
-          <pre>pip install pydungeoncrawl</pre>
+          <pre><code class="language-python">pip install pydungeoncrawl</code></pre>
 	</p>
       </div>
       <!-- Template -->
@@ -78,35 +78,128 @@
           Select a party of heroes consisting of one tank, one healer, and two damage dealers. (See the <a href="/heroes">Heroes</a> section for more information)
         </p>
 
-<pre><code class="language-python">
-# import a level from pydungeoncrawl.levels
-from pydungeoncrawl.levels import MovementTraining
-
-# import a boss from pydungeoncrawl.bosses
-from pydungeoncrawl.bosses import Golem
-
-# import heroes and the party class from pydungeoncrawl.heroes
-from pydungeoncrawl.heroes import Shaman, Paladin, Ranger, Bard, Party
-
-# instantiate heroes and the boss
-shaman = Shaman("Seamus")
-paladin = Paladin("Perry")
-ranger = Ranger("Ruprect")
-bard = Bard("Barry")
-
-boss = Golem()
-
-# instantiate a party using the heroes
-party = Party(shaman, paladin, ranger, bard)
-
-# instantiate a level using the party and boss
-game = MovementTraining(party=party, boss=boss)
-
-for turn in game:
-    # put all your logic here
-    ...
+        <div class="accordion" id="notebookExample">
+          <div class="card bg-dark text-white">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Jupyter Notebook
+                </button>
+              </h5>
+            </div>
         
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#notebookExample">
+              <div class="card-body">
+<pre><code class="language-python">
+  # import a level from pydungeoncrawl.levels
+  from pydungeoncrawl.levels import MovementTraining
+  
+  # import a boss from pydungeoncrawl.bosses
+  from pydungeoncrawl.bosses import Golem
+  
+  # import heroes and the party class from pydungeoncrawl.heroes
+  from pydungeoncrawl.heroes import Shaman, Paladin, Ranger, Bard, Party
+  
+  # instantiate heroes and the boss
+  shaman = Shaman("Seamus")
+  paladin = Paladin("Perry")
+  ranger = Ranger("Ruprect")
+  bard = Bard("Barry")
+  
+  boss = Golem()
+  
+  # instantiate a party using the heroes
+  party = Party(shaman, paladin, ranger, bard)
+  
+  # instantiate a level using the party and boss
+  game = MovementTraining(party=party, boss=boss)
+  
+  for turn in game:
+      # put all your logic here
+      ...
+          
+  </code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-dark text-white">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-dark collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Google Colab
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#notebookExample">
+              <div class="card-body">
+<pre><code class="language-python">
+  # update the Google colab environment to python 3.11
+  # you only need to run this cell once!
+
+  !python --version
+  !sudo apt-get update
+  !sudo apt-get install python3.11
+  !sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+  !sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 2
+  !python3 --version
+  !sudo apt-get install python3.11-distutils
+  !wget https://bootstrap.pypa.io/get-pip.py
+  !python get-pip.py
+
+  !python -m pip install ipython ipython_genutils ipykernel jupyter_console prompt_toolkit httplib2 astor
+
+  # link to the old google package
+  !ln -s /usr/local/lib/python3.8/dist-packages/google \
+        /usr/local/lib/python3.11/dist-packages/google
+
+  # fix broken imports from old python version
+  !sed -i "s/from IPython.utils import traitlets as _traitlets/import traitlets as _traitlets/" \
+        /usr/local/lib/python3.11/dist-packages/google/colab/*.py
+  !sed -i "s/from IPython.utils import traitlets/import traitlets/" \
+        /usr/local/lib/python3.11/dist-packages/google/colab/*.py
+
+  !pip install -U pydungeoncrawl
+
+  # clear that output and restart notebook the kernel
+  from IPython.display import clear_output
+  clear_output()
+  get_ipython().kernel.do_shutdown(True)
 </code></pre>
+<pre><code class="language-python">
+  # import a level from pydungeoncrawl.levels
+  from pydungeoncrawl.levels import MovementTraining
+  
+  # import a boss from pydungeoncrawl.bosses
+  from pydungeoncrawl.bosses import Golem
+  
+  # import heroes and the party class from pydungeoncrawl.heroes
+  from pydungeoncrawl.heroes import Shaman, Paladin, Ranger, Bard, Party
+  
+  # instantiate heroes and the boss
+  shaman = Shaman("Seamus")
+  paladin = Paladin("Perry")
+  ranger = Ranger("Ruprect")
+  bard = Bard("Barry")
+  
+  boss = Golem()
+  
+  # instantiate a party using the heroes
+  party = Party(shaman, paladin, ranger, bard)
+  
+  # instantiate a level using the party and boss
+  game = MovementTraining(party=party, boss=boss)
+  
+  for turn in game:
+      # put all your logic here
+      ...
+          
+  </code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
 
       <hr />
@@ -378,256 +471,7 @@ for turn in game:
       </div>
       
       <hr />
-<!-- 
-      <div class="container">
-        <div class="row border-bottom">
-          <div class="col-2 mt-4 lead">Entry</div>
-          <div class="col-3 mt-4 lead">Arguments</div>
-          <div class="col-2 mt-4 lead">Returns</div>
-          <div class="col-5 mt-4 lead">Description</div>
-        </div>
-        
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">repr(pawn)</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4"><code class="language-python">str</code></div>
-          <div class="col-5 mt-4">
-            The repr for a
-            <code class="language-python">Character</code> displays the name,
-            position, health, and symbol of the character. Example:
-            <pre><code class='language-python'>hero = Paladin('Perry')</code>
-<code class='language-python'>repr(hero) # Character(Perry, (0, 0), 120/120, ⚜️)</code></pre>
-          </div>
-        </div>
-        
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.active_effects</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">
-            <code class="language-python">list[str]</code>
-          </div>
-          <div class="col-5 mt-4">
-            shows all current active effects on the pawn in the form
-            <code class="language-python">['effect 1', 'effect 2', ...]</code>. Example:
-            <pre><code class='language-python'>hero.active_effects # [ 'might', 'blind', 'poison']</code></pre>
-          </div>
-        </div>
-        
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.blinded</code><br />
-            <code class="language-python">pawn.poisoned</code><br />
-            <code class="language-python">pawn.rooted</code><br />
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
-          <div class="col-5 mt-4">
-            Returns <code class="language-python">True</code> or
-            <code class="language-python">False</code> depending on if the pawn
-            is currently being affected by the corresponding effect. Example:
-            <pre><code class="language-python">hero.blinded  # False</code>
-<code class="language-python">boss.poisoned # True</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.cooldowns</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">
-            <code class="language-python">dict[str,int]</code>
-          </div>
-          <div class="col-5 mt-4">
-            shows all current abilities that are on cooldown in the form
-            <code class="language-python"
-              >{"ability name" : turns_until_ready}</code>. Example:
-            <pre><code class='language-python'>hero.cooldowns # {'strike': 1, 'healing word': 2}</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.distance_to</code><br />
-            <code class="language-python">pawn.distance_from</code>
-          </div>
-          <div class="col-3 mt-4">
-            <code class="language-python">Point</code>,
-            <code class="language-python">Pawn</code>,
-            <code class="language-python">Square</code>, or Tuple
-            <code class="language-python">(x, y)</code>
-          </div>
-          <div class="col-2 mt-4"><code class="language-python">float</code></div>
-          <div class="col-5 mt-4">
-            Get the distance between the pawn and a
-            <code class="language-python">Point</code>, something with a
-            <code class="language-python">position</code> attribute (<code
-              class="language-python"
-              >Pawn</code
-            >,<code class="language-python">Square</code>, etc.) or tuple of
-            (x,y) coordinates. e.g.: <br />
-            <pre><code class='language-python'>hero.distance_to( boss ) # 13.1555</code>
-<code class='language-python'>hero.distance_to( (5, 5) ) # 1.41</code>
-<code class='language-python'>hero.distance_from( board.at(5, 5) ) # 1.41</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.stacks</code>
-          </div>
-          <div class="col-3 mt-4">
-            <code class="language-python">str</code>: the name of an effect
-          </div>
-          <div class="col-2 mt-4"><code class="language-python">int</code></div>
-          <div class="col-5 mt-4">
-            Get the number of stacks of a specific effect affecting the pawn. Example:
-            <pre><code class='language-python'>hero.stacks("Might") # 5</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.position</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4"><code class="language-python">Point</code></div>
-          <div class="col-5 mt-4">
-            The pawn's position represented as a Point object (basically a tuple
-            with <code class="language-python">point.x</code> and
-            <code class="language-python">point.y</code>)
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.health</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4"><code class="language-python">int</code></div>
-          <div class="col-5 mt-4">The pawn's current health amount</div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.health_percent</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">
-            <code class="language-python">float</code> (between 0 and 1)
-          </div>
-          <div class="col-5 mt-4">
-            The pawn's current health as a percentage of their maximum health.
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.is_behind</code>
-          </div>
-          <div class="col-3 mt-4"><code class="language-python">Pawn</code></div>
-          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
-          <div class="col-5 mt-4">
-            Returns <code class="language-python">True</code> or
-            <code class="language-python">False</code> depending on if the pawn
-            is behind the specified <code class="language-python">Pawn</code>,
-            e.g.
-            <pre><code class='language-python'>hero.is_behind( boss ) # True</code>
-<code class='language-python'>boss.is_behind( hero ) # False</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.move_up</code><br />
-            <code class="language-python">pawn.move_down</code><br />
-            <code class="language-python">pawn.move_left</code><br />
-            <code class="language-python">pawn.move_right</code><br />
-            <code class="language-python">pawn.move_up_left</code><br />
-            <code class="language-python">pawn.move_up_right</code><br />
-            <code class="language-python">pawn.move_down_left</code><br />
-            <code class="language-python">pawn.move_down_right</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">None</div>
-          <div class="col-5 mt-4">
-            Move one square in the specified direction (up, down, left, right,
-            or diagonal).
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.move_toward</code>
-          </div>
-          <div class="col-3 mt-4">
-            <code class="language-python">Pawn</code> or
-            <code class="language-python">Point</code>
-          </div>
-          <div class="col-2 mt-4">
-            <code class="language-python">None</code>
-          </div>
-          <div class="col-5 mt-4">
-            Move one square in a straight line toward the provided
-            <code class="language-python">Pawn</code> or
-            <code class="language-python">Point</code>, as calculated using
-            Bresenham's algorithm. Does not take into account impassible or
-            dangerous terrain -- that is, using this movement method, the pawn
-            might attempt to move into a wall and fail the move. Example:
-            <pre><code class='language-python'>hero.move_toward( boss )</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.points_behind</code><br />
-            <code class="language-python">pawn.positions_behind</code>
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">
-            <code class="language-python">list[Point]</code>
-          </div>
-          <div class="col-5 mt-4">
-            Gets the three points that make up what is "behind" the character.
-            This is useful for determining if a character is behind another
-            character, or if a character is in range of an ability.
-            <code class="language-python">pawn.is_behind()</code> is a
-            convenience function that uses this property. Example:
-            <pre><code class='language-python'>hero.points_behind # [Point(5, 5), Point(5, 6), Point(5, 7)]</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.resistances</code>
-            <code class="language-python">pawn.vulnerabilities</code><br />
-          </div>
-          <div class="col-3 mt-4">None</div>
-          <div class="col-2 mt-4">
-            <code class="language-python">list[Effect]</code>
-          </div>
-          <div class="col-5 mt-4">
-            The pawn's vulnerabilities and resistances. These are the effects
-            that the pawn is vulnerable to or resistant to, respectively. Example:
-            <pre><code class='language-python'>boss.vulnerabilities # [Effect("Poison Vulnerability", duration=3), Effect("Magic Vulnerability", duration=1)]</code></pre>
-          </div>
-        </div>
-        <div class="row border-bottom">
-          <div class="col-2 mt-4">
-            <code class="language-python">pawn.resistant_to</code>
-            <code class="language-python">pawn.vulnerable_to</code><br />
-          </div>
-          <div class="col-3 mt-4">
-            <code class="language-python"
-              >Literal["fire","frost","magic","poison"]</code
-            >
-          </div>
-          <div class="col-2 mt-4"><code class="language-python">bool</code></div>
-          <div class="col-5 mt-4">
-            Returns <code class="language-python">True</code> or
-            <code class="language-python">False</code> depending on if the pawn
-            is vulnerable to or resistant to the specified element. Example:
-            <pre><code class='language-python'>boss.vulnerable_to("fire") # True</code>
-<code class='language-python'>hero.vulnerable_to("poison") # False</code></pre>
-          </div>
-        </div>
-      </div>
 
-      <hr />
--->
       <!--------------- Party Stuff ------------------>
       <div class="container">
         <h1 class="bg-dark text-white">
@@ -1101,4 +945,7 @@ repr(party) # Party((Character(Seamus, (1, 27), 100/100, 🍄), Character(Perry,
   </body>
   <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/prism.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </html>
